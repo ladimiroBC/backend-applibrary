@@ -1,6 +1,5 @@
 package com.applibrary.managementlibrary.controllers;
 
-import com.applibrary.managementlibrary.DTO.BookDTO;
 import com.applibrary.managementlibrary.DTO.StudentDTO;
 import com.applibrary.managementlibrary.common.constants.ErrorMessagesConstants;
 import com.applibrary.managementlibrary.common.constants.SuccessfullyMessagesConstants;
@@ -85,7 +84,7 @@ public class LoanController {
 
         int numberOfLoans = studentService.countLoansByStudentId(studentId);
 
-        if(numberOfLoans >= 3) {
+        if(numberOfLoans > 3) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorMessagesConstants.MAX_LOANS_EXCEEDED);
         }
 
@@ -94,20 +93,6 @@ public class LoanController {
         studentDTO.setNumberOfLoans(numberOfLoans);
 
         return ResponseEntity.ok(studentDTO);
-    }
-
-    @GetMapping("/check-book")
-    public ResponseEntity<?> checkBook(@RequestParam("registerCode") String bookCode) {
-        Book book = bookService.findByCode(bookCode);
-
-        if(book == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorMessagesConstants.REGISTER_CODE_BOOK_NOT_EXIST);
-        }
-
-        BookDTO bookDTO = new BookDTO();
-        bookDTO.setBook(book);
-
-        return ResponseEntity.ok(bookDTO);
     }
 
     @PostMapping("/borrow-book")

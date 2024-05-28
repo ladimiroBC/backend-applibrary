@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -32,6 +34,9 @@ public class Book implements Serializable {
 
     @Column(name = "register_code")
     private String registerCode;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Loan> loans = new ArrayList<>();
 
     public Integer getIdBook() {
         return idBook;
@@ -87,5 +92,13 @@ public class Book implements Serializable {
 
     public void setRegisterCode(String registerCode) {
         this.registerCode = registerCode;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
     }
 }

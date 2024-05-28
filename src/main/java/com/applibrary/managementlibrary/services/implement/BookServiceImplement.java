@@ -1,14 +1,15 @@
 package com.applibrary.managementlibrary.services.implement;
 
 import com.applibrary.managementlibrary.dao.BookDao;
+import com.applibrary.managementlibrary.dao.LoanDao;
 import com.applibrary.managementlibrary.models.Book;
+import com.applibrary.managementlibrary.models.Loan;
 import com.applibrary.managementlibrary.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BookServiceImplement implements BookService {

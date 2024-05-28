@@ -12,4 +12,5 @@ public interface LoanService {
     public void delete(Integer id);
     public Loan findById(Integer id);
     public int countLoansByStudentCode(String studentCode);
+    public boolean isBookBorrowed(Integer bookId);
 }

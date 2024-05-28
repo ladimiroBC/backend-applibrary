@@ -53,5 +53,8 @@ public class LoanServiceImplement implements LoanService {
         return loanDao.countByStudentId(student.getIdStudent());
     }
 
-
+    @Override
+    public boolean isBookBorrowed(Integer bookId) {
+        return loanDao.existsByBookIdAndStateLoanTrue(bookId);
+    }
 }
